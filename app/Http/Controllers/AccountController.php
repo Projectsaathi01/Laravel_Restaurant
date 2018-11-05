@@ -48,7 +48,7 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'fname'=> 'required|min:10|max:20',
+            'fname'=> 'required|min:4|max:20',
             'lname'=> 'required',
             'username'=> 'required',
             'confirmpass'=> 'required'
@@ -61,7 +61,21 @@ class AccountController extends Controller
         $account->password = $request->confirmpass;
         $account->save();
         // \Session::flash('flash_message','successfully saved.');
-        return redirect()->route('account.index')->with('success', 'You have successfully Created!');;
+        $notification = array(
+
+            'message' => 'Update Successfully a Record',
+
+            'alert-type' => 'success'
+
+        );
+        \Session::flash('success', 'You have successfully Created!');
+
+        
+
+        return redirect()->route('account.index')->with($notification);
+        // ->with('success', 'You have successfully Created!');
+
+        
     }
 
     /**
@@ -102,7 +116,12 @@ class AccountController extends Controller
         $account->username = $request->username;
         $account->password = $request->confirmpass;
         $account->save();
-        return redirect()->route('account.index');
+        
+        $notification = array(
+            'message' => 'Successfully get laravel data!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('account.index')->with($notification);
     }
 
     /**

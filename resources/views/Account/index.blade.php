@@ -14,7 +14,44 @@
     
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/dashboard.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
+
+
+
+
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/toastr.min.js') }}"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+	@if(Session::has('message'))
+		var type="{{Session::get('alert-type','info')}}"
+
+		switch(type){
+			case 'info':
+		         toastr.info("{{ Session::get('message') }}");
+		         break;
+	        case 'success':
+	            toastr.success("{{ Session::get('message') }}");
+	            break;
+         	case 'warning':
+	            toastr.warning("{{ Session::get('message') }}");
+	            break;
+	        case 'error':
+		        toastr.error("{{ Session::get('message') }}");
+		        break;
+		}
+	@endif
+</script>
+
+    
   </head>
 
   <body>
@@ -166,7 +203,10 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
+
+    <!-- script for notification -->
+    
     
   </body>
 </html>
